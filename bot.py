@@ -3,6 +3,8 @@ import time
 import requests
 import pandas as pd
 from datetime import datetime, timedelta, timezone
+from dotenv import load_dotenv
+import os
 
 from alpaca.trading.client import TradingClient
 from alpaca.trading.requests import MarketOrderRequest
@@ -14,6 +16,9 @@ from alpaca.data.timeframe import TimeFrame
 
 
 # ---------- INIT: trading + data clients ----------
+load_dotenv()
+API_KEY = os.getenv("API_KEY")
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 trading_client = TradingClient(API_KEY, SECRET_KEY, paper=True)
 market_data_client = StockHistoricalDataClient(API_KEY, SECRET_KEY)
